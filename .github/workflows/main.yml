@@ -11,3 +11,23 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run Tests
         run: pytest
+      - name: Copy file
+        if: ${{ success() }}
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "." 
+          target: "/home/farm-site"
+      
+      - name: Deploy to VPS
+        if: ${{ success() }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }} 
+          username: ${{ secrets.USERNAME }} 
+          key: ${{ secrets.SSH_PRIVATE_KEY }} 
+          script: |
+            cd /home/farm-site
+            sudo systemctl restart farm-site
