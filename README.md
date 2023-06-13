@@ -1,3 +1,3 @@
 # Continuous deployment
 
-https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg
+https://github.com/Eef89/Continuous-Deployment/actions/workflows/main/badge.svg
