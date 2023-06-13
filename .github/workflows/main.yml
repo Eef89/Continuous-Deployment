@@ -2,7 +2,7 @@ name: CD
 
 on: push
 jobs:
-  run-tests:
+  cd:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
